@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/authReducer.js/action";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,20 +11,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
-      email,
+      mobile_no: email,
       password,
     };
-    dispatch(userData);
+    dispatch(login(userData));
     setEmail("");
     setPassword("");
   };
   return (
     <div>
       <h1>Login</h1>
-      {auth ? "login successfull" : "please login"}
+      <h1>{auth ? "login successfull" : "please login"}</h1>
       <form onSubmit={handleSubmit}>
         <input
-          type="email"
+          // type="email"
           placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
